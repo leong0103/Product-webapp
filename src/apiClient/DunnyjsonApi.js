@@ -12,7 +12,7 @@ export const ENDPOINTS = {
 export const createAPIEndpoint = (endpoint) => {
     let url = "";
     if (endpoint === ENDPOINTS.products) {
-        url = BASE_URL + "products" + "/";
+        url = BASE_URL + "products/";
         return { 
             fetch: () => axios.get(url), 
             delete: id => axios.delete(url + id) 
