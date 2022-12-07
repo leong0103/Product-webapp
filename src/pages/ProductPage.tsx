@@ -2,9 +2,8 @@ import { Box, Typography } from "@mui/material";
 import ProductCard from "../components/ProductCard";
 import { useEffect } from "react";
 import { useProductPage } from "../hooks/useProductPage";
-import useStateContext from "../hooks/useStateContext";
 import SelectButtonExpand from "../components/SelectButtonExpand";
-import { createAPIEndpoint, ENDPOINTS } from "../apiClient/DunnyjsonApi";
+import useStateContext from "../hooks/useStateContext";
 
 export interface ProductResponse {
   id: number;
@@ -20,9 +19,9 @@ export default function ProductPage() {
   const {
     sortOption,
     products,
-    setProducts,
     categoriesOption,
     handleCategories,
+    handleDeleteClick,
     handleSort,
     handleSearch,
     getCategories,
@@ -31,14 +30,6 @@ export default function ProductPage() {
 
   const { context } = useStateContext();
 
-  const handleDeleteClick = (id: number) => {
-    const result = products.filter((product) => product.id !== id);
-    createAPIEndpoint(ENDPOINTS.products).delete!(id).then((res) => {
-      console.log(res);
-    });
-
-    setProducts(result);
-  };
   useEffect(() => {
     getProducts();
     getCategories();

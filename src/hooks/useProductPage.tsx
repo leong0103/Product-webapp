@@ -14,19 +14,28 @@ export function useProductPage() {
   const [products, setProducts] = useState<ProductResponse[]>([]);
   const [categoriesOption, setCategoriesOption] = useState<string[]>([]);
 
+  
   const handleCategories = (category: string) => {
     if (category === "remove filter") {
       getProducts();
     } else {
       createAPIEndpoint(ENDPOINTS.category)
-        .fetch(category)
-        .then((res) => {
-          setProducts(res.data.products);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      .fetch(category)
+      .then((res) => {
+        setProducts(res.data.products);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     }
+  };
+  
+  const handleDeleteClick = (id: number) => {
+    const result = products.filter((product) => product.id !== id);
+    createAPIEndpoint(ENDPOINTS.products).delete!(id).then((res) => {
+      console.log(res);
+    });
+    setProducts(result);
   };
 
   const handleSort = (sortMethod: string) => {
@@ -91,6 +100,7 @@ export function useProductPage() {
     categoriesOption,
     setCategoriesOption,
     handleCategories,
+    handleDeleteClick,
     handleSort,
     handleSearch,
     getCategories,

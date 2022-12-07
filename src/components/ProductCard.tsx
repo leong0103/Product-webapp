@@ -6,15 +6,18 @@ import {
   IconButton,
   Typography,
 } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { ProductResponse } from "../pages/ProductPage";
-import DeleteIcon from '@mui/icons-material/Delete';
 
 interface ProductCardProp {
   product: ProductResponse;
-  handleDeleteClick: (id: number) => void
+  handleDeleteClick: (id: number) => void;
 }
 
-export default function ProductCard({ product, handleDeleteClick }: ProductCardProp) {
+export default function ProductCard({
+  product,
+  handleDeleteClick,
+}: ProductCardProp) {
   return (
     <>
       <Card
@@ -27,15 +30,15 @@ export default function ProductCard({ product, handleDeleteClick }: ProductCardP
         }}
       >
         <IconButton
-              size="small"
-              edge="start"
-              color="inherit"
-              aria-label="open drawer"
-              sx={{ float: 'right' }}
-              onClick={() => handleDeleteClick(product.id)}
-            >
-              <DeleteIcon />
-            </IconButton>
+          size="small"
+          edge="start"
+          color="inherit"
+          aria-label="open drawer"
+          sx={{ float: "right" }}
+          onClick={() => handleDeleteClick(product.id)}
+        >
+          <DeleteIcon />
+        </IconButton>
         <CardMedia
           component="img"
           height="300"
@@ -55,7 +58,6 @@ export default function ProductCard({ product, handleDeleteClick }: ProductCardP
           <Typography fontSize="" sx={{ mt: 3 }}>
             {"Category: " + product.category}
           </Typography>
-          
         </CardContent>
       </Card>
     </>

@@ -31,7 +31,6 @@ export const createAPIEndpoint = (endpoint) => {
         return { fetch: (type) => axios.get(url + type) }
     }
     return {
-        fetch: () => axios.get(url),
-        // delete: (id) => axios.delete(url) 
+        fetch: () => axios.get(url)
     }
 }
